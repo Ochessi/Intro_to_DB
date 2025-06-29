@@ -2,38 +2,38 @@ CREATE DATABASE IF NOT EXISTS alx_book_store;
 USE alx_book_store;
 
 CREATE TABLE Authors (
-    authorID INT AUTO_INCREMENT PRIMARY KEY,
-    authorName VARCHAR(215) NOT NULL
+    author_ID INT AUTO_INCREMENT PRIMARY KEY,
+    author_Name VARCHAR(215) NOT NULL
 );
 
 CREATE TABLE Books (
-    bookID INT AUTO_INCREMENT PRIMARY KEY,
+    book_ID INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
-    authorID INT NOT NULL,
+    author_ID INT NOT NULL,
     price DECIMAL(10, 2) NOT NULL,
-    publicationDate DATE NOT NULL,
-    FOREIGN KEY (authorID) REFERENCES Authors(authorID)
+    publication_Date DATE NOT NULL,
+    FOREIGN KEY (author_ID) REFERENCES Authors(author_ID)
 );
 
 CREATE TABLE Customers (
-    customerID INT AUTO_INCREMENT PRIMARY KEY,
-    customerName VARCHAR(215) NOT NULL,
+    customer_ID INT AUTO_INCREMENT PRIMARY KEY,
+    customer_Name VARCHAR(215) NOT NULL,
     email VARCHAR(255) UNIQUE NOT NULL,
     address TEXT NOT NULL
 );
 
 CREATE TABLE Orders (
-    orderID INT AUTO_INCREMENT PRIMARY KEY,
-    customerID INT NOT NULL,
-    orderDate DATE NOT NULL,
-    FOREIGN KEY (customerID) REFERENCES Customers(customerID)
+    order_ID INT AUTO_INCREMENT PRIMARY KEY,
+    customer_ID INT NOT NULL,
+    order_Date DATE NOT NULL,
+    FOREIGN KEY (customer_ID) REFERENCES Customers(customer_ID)
 );
 
-CREATE TABLE OrderDetails (
-    orderDetailID INT AUTO_INCREMENT PRIMARY KEY,
-    orderID INT NOT NULL,
-    bookID INT NOT NULL,
+CREATE TABLE Order_Details (
+    order_Detail_ID INT AUTO_INCREMENT PRIMARY KEY,
+    order_ID INT NOT NULL,
+    book_ID INT NOT NULL,
     quantity INT NOT NULL,
-    FOREIGN KEY (orderID) REFERENCES Orders(orderID),
-    FOREIGN KEY (bookID) REFERENCES Books(bookID)
+    FOREIGN KEY (order_ID) REFERENCES Orders(order_ID),
+    FOREIGN KEY (book_ID) REFERENCES Books(book_ID)
 );
